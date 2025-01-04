@@ -33,9 +33,9 @@
           ansible.builtin.get_url:
             url: "https://github.com/alacritty/alacritty/archive/refs/tags/v{{ alacritty_version }}.tar.gz"
             dest: "/tmp/alacritty-{{ alacritty_version }}.tar.gz"
-          mode: "0600"
-          owner: "{{ ansible_user }}"
-          group: "{{ ansible_user }}"
+            mode: "0600"
+            owner: "{{ ansible_user }}"
+            group: "{{ ansible_user }}"
 
         - name: Extract archive
           ansible.builtin.unarchive:

@@ -38,7 +38,7 @@ jobs:
         uses: ansible/ansible-lint@v24.12.2
         with:
           working_directory: "pluggero.alacritty"
-          requirements_file: "molecule/defaults/requirements.yml"
+          requirements_file: "requirements.yml"
 
   molecule:
     name: Molecule
