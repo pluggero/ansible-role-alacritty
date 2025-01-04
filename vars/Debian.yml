@@ -1,0 +1,11 @@
+---
+# Dependencies for Alacritty according to https://github.com/alacritty/alacritty/blob/master/INSTALL.md#debianubuntu
+alacritty_dep_pkgs:
+  - cmake
+  - g++
+  - pkg-config
+  - libfreetype6-dev
+  - libfontconfig1-dev
+  - libxcb-xfixes0-dev
+  - libxkbcommon-dev
+  - python3

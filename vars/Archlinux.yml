@@ -1,0 +1,11 @@
+---
+# Dependencies for Alacritty according to https://github.com/alacritty/alacritty/blob/master/INSTALL.md#arch-linux
+alacritty_dep_pkgs:
+  - cmake
+  - freetype2
+  - fontconfig
+  - pkg-config
+  - make
+  - libxcb
+  - libxkbcommon
+  - python

@@ -1,0 +1,14 @@
+---
+alacritty_config_dir: "{{ ansible_env.HOME }}/.config/alacritty"
+alacritty_config_file: "{{ alacritty_config_dir }}/alacritty.toml"
+
+alacritty_version: "0.14.0"
+alacritty_install_method: "source"
+alacritty_reinstall_from_source: false
+
+alacritty_opacity: 0.9
+alacritty_shell: "/bin/bash"
+alacritty_font:
+  size: 10
+  family: "JetBrainsMono NF Medium"
+  style: "Regular"

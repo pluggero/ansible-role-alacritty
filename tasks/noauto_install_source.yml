@@ -1,0 +1,65 @@
+---
+- name: Ensure alacritty is installed
+  block:
+    - name: Get installed alacritty version
+      ansible.builtin.command:
+        cmd: "alacritty --version"
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+      ignore_errors: true
+      changed_when: false
+      failed_when: false
+      register: alacritty_version_cmd
+
+    - name: Extract only the version into a variable
+      ansible.builtin.set_fact:
+        alacritty_installed_version: "{{ alacritty_version_cmd.stdout | regex_replace('^.*?([\\d\\.]{2,}).*$', '\\1') }}"
+
+    - name: Debug installed alacritty version
+      ansible.builtin.debug:
+        var: alacritty_installed_version
+
+    - name: Force install if the version numbers do not match
+      ansible.builtin.set_fact:
+        alacritty_reinstall_from_source: true
+      when:
+        - alacritty_installed_version is defined
+        - alacritty_installed_version != alacritty_version
+
+    - name: Install alacritty from source
+      block:
+        - name: Download alacritty
+          ansible.builtin.get_url:
+            url: "https://github.com/alacritty/alacritty/archive/refs/tags/v{{ alacritty_version }}.tar.gz"
+            dest: "/tmp/alacritty-{{ alacritty_version }}.tar.gz"
+
+        - name: Extract archive
+          ansible.builtin.unarchive:
+            src: "/tmp/alacritty-{{ alacritty_version }}.tar.gz"
+            dest: "/tmp/"
+            remote_src: true
+
+        - name: Build alacritty
+          ansible.builtin.command:
+            cmd: "cargo build --release"
+            chdir: "/tmp/alacritty-{{ alacritty_version }}"
+          environment:
+            PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+        - name: Install alacritty
+          ansible.builtin.command:
+            cmd: "cargo install --path /tmp/alacritty-{{ alacritty_version }}/alacritty"
+          environment:
+            PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+        - name: Remove build directory
+          ansible.builtin.file:
+            path: "/tmp/alacritty-{{ alacritty_version }}"
+            state: absent
+
+        - name: Remove archive
+          ansible.builtin.file:
+            path: "/tmp/alacritty-{{ alacritty_version }}.tar.gz"
+            state: absent
+
+      when: alacritty_installed_version is not defined or alacritty_reinstall_from_source
