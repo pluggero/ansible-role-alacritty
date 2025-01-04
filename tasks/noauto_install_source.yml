@@ -27,11 +27,15 @@
         - alacritty_installed_version != alacritty_version
 
     - name: Install alacritty from source
+      when: alacritty_installed_version is not defined or alacritty_reinstall_from_source
       block:
         - name: Download alacritty
           ansible.builtin.get_url:
             url: "https://github.com/alacritty/alacritty/archive/refs/tags/v{{ alacritty_version }}.tar.gz"
             dest: "/tmp/alacritty-{{ alacritty_version }}.tar.gz"
+          mode: "0600"
+          owner: "{{ ansible_user }}"
+          group: "{{ ansible_user }}"
 
         - name: Extract archive
           ansible.builtin.unarchive:
@@ -45,12 +49,14 @@
             chdir: "/tmp/alacritty-{{ alacritty_version }}"
           environment:
             PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+          changed_when: true
 
         - name: Install alacritty
           ansible.builtin.command:
             cmd: "cargo install --path /tmp/alacritty-{{ alacritty_version }}/alacritty"
           environment:
             PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+          changed_when: true
 
         - name: Remove build directory
           ansible.builtin.file:
@@ -61,5 +67,3 @@
           ansible.builtin.file:
             path: "/tmp/alacritty-{{ alacritty_version }}.tar.gz"
             state: absent
-
-      when: alacritty_installed_version is not defined or alacritty_reinstall_from_source
