@@ -4,6 +4,7 @@ alacritty_config_file: "{{ alacritty_config_dir }}/alacritty.toml"
 
 alacritty_version: "0.14.0"
 alacritty_install_method: "source"
+alacritty_build_dir: "{{ ansible_remote_tmp }}"
 alacritty_reinstall_from_source: false
 
 alacritty_opacity: 0.9
