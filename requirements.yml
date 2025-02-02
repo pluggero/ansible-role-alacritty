@@ -4,3 +4,5 @@ collections:
 roles:
   - name: pluggero.rustup
     version: 1.0.1
+  - name: pluggero.nerdfonts
+    version: 1.0.0

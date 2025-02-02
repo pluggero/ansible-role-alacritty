@@ -1,6 +1,8 @@
 ---
 dependencies:
   - role: pluggero.rustup
+    version: 1.0.1
+  - role: pluggero.nerdfonts
     version: 1.0.0
 
 galaxy_info:

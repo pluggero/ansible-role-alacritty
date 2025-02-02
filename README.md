@@ -7,6 +7,7 @@ An Ansible Role that installs a basic configuration of the Alacritty Terminal.
 ## Requirements
 
 Requires a compatible Rust toolchain to build Alacritty from source; Recommended role: `pluggero.rustup`.
+Requires a compatible font; Recommended role: `pluggero.nerdfonts`.
 
 ## Role Variables
 

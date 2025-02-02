@@ -4,7 +4,6 @@
 
   vars:
     ansible_user: "root"
-    ansible_remote_tmp: "/tmp"
 
   pre_tasks:
     - name: Update apt cache
