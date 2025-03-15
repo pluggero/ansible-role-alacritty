@@ -2,7 +2,7 @@
 alacritty_config_dir: "{{ ansible_env.HOME }}/.config/alacritty"
 alacritty_config_file: "{{ alacritty_config_dir }}/alacritty.toml"
 
-alacritty_version: "0.14.0"
+alacritty_version: "0.15.1"
 alacritty_install_method: "source"
 alacritty_build_dir: "/tmp"
 alacritty_reinstall_from_source: false
