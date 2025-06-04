@@ -1,0 +1,20 @@
+---
+- name: Check installed alacritty version
+  block:
+    - name: Get installed alacritty version
+      ansible.builtin.command:
+        cmd: "alacritty --version"
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+      ignore_errors: true
+      changed_when: false
+      failed_when: false
+      register: alacritty_installed_version_cmd
+
+    - name: Extract only the version into a variable
+      ansible.builtin.set_fact:
+        alacritty_installed_version: "{{ alacritty_installed_version_cmd.stdout | regex_replace('^.*?([\\d\\.]{2,}).*$', '\\1') }}"
+
+    - name: Debug installed alacritty version
+      ansible.builtin.debug:
+        var: alacritty_installed_version
