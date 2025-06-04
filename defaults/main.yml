@@ -4,8 +4,10 @@ alacritty_config_file: "{{ alacritty_config_dir }}/alacritty.toml"
 
 alacritty_version: "0.15.1"
 alacritty_install_method: "source"
-alacritty_build_dir: "/tmp"
-alacritty_reinstall_from_source: false
+alacritty_force_install: false
+
+alacritty_download_url: "https://github.com/alacritty/alacritty/archive/refs/tags/v{{ alacritty_version }}.tar.gz"
+alacritty_download_dir: "/tmp"
 
 alacritty_opacity: 0.9
 alacritty_shell: "/bin/bash"
