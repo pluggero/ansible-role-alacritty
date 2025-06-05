@@ -1,19 +1,35 @@
 {
-  "extends": ["config:best-practices", ":disableRateLimiting"],
-  "enabledManagers": ["github-actions", "pip_requirements", "regex"],
-  "assignees": ["pluggero"],
+  "extends": [
+    "config:best-practices",
+    ":disableRateLimiting"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "pip_requirements",
+    "custom.regex"
+  ],
+  "assignees": [
+    "pluggero"
+  ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^defaults/main\\.yml$"],
-      "matchStrings": ["alacritty_version:\\s+\"(?<currentValue>[\\d\\.]+)\""],
+      "managerFilePatterns": [
+        "/^defaults/main\\.yml$/"
+      ],
+      "matchStrings": [
+        "alacritty_version:\\s+\"(?<currentValue>[\\d\\.]+)\""
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "alacritty/alacritty",
       "versioningTemplate": "semver"
     },
     {
       "customType": "regex",
-      "fileMatch": ["^requirements\\.yml$", "^meta/main\\.yml$"],
+      "managerFilePatterns": [
+        "/^requirements\\.yml$/",
+        "/^meta/main\\.yml$/"
+      ],
       "matchStrings": [
         "- name: pluggero\\.rustup\\s+version:\\s+(?<currentValue>[\\d\\.]+)",
         "- role: pluggero\\.rustup\\s+version:\\s+(?<currentValue>[\\d\\.]+)"
@@ -24,7 +40,10 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^requirements\\.yml$", "^meta/main\\.yml$"],
+      "managerFilePatterns": [
+        "/^requirements\\.yml$/",
+        "/^meta/main\\.yml$/"
+      ],
       "matchStrings": [
         "- name: pluggero\\.nerdfonts\\s+version:\\s+(?<currentValue>[\\d\\.]+)",
         "- role: pluggero\\.nerdfonts\\s+version:\\s+(?<currentValue>[\\d\\.]+)"
