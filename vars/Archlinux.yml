@@ -9,3 +9,6 @@ alacritty_dep_pkgs:
   - libxcb
   - libxkbcommon
   - python
+
+alacritty_distro_pkgs:
+  - alacritty

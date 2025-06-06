@@ -3,7 +3,7 @@ alacritty_config_dir: "{{ ansible_env.HOME }}/.config/alacritty"
 alacritty_config_file: "{{ alacritty_config_dir }}/alacritty.toml"
 
 alacritty_version: "0.15.1"
-alacritty_install_method: "source"
+alacritty_install_method: "dynamic"
 alacritty_force_install: false
 
 alacritty_download_url: "https://github.com/alacritty/alacritty/archive/refs/tags/v{{ alacritty_version }}.tar.gz"

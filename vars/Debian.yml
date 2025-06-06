@@ -9,3 +9,5 @@ alacritty_dep_pkgs:
   - libxcb-xfixes0-dev
   - libxkbcommon-dev
   - python3
+
+alacritty_distro_pkgs: []
