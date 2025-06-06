@@ -1,0 +1,13 @@
+---
+- name: Uninstall alacritty from source
+  block:
+    - name: Include rustup role
+      ansible.builtin.include_role:
+        name: pluggero.rustup
+
+    - name: Uninstall alacritty
+      ansible.builtin.command:
+        cmd: "cargo uninstall alacritty"
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+      changed_when: true

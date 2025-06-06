@@ -15,6 +15,10 @@
     - name: Install alacritty from source
       when: alacritty_installed_version is not defined or alacritty_force_install
       block:
+        - name: Include rustup role
+          ansible.builtin.include_role:
+            name: pluggero.rustup
+
         - name: Download alacritty
           ansible.builtin.get_url:
             url: "{{ alacritty_download_url }}"
