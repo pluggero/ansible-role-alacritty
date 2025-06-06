@@ -6,8 +6,14 @@
   "enabledManagers": [
     "github-actions",
     "pip_requirements",
-    "custom.regex"
+    "custom.regex",
+    "ansible-galaxy"
   ],
+  "ansible-galaxy": {
+    "managerFilePatterns": [
+      "/^requirements\\.ya?ml$/"
+    ]
+  },
   "assignees": [
     "pluggero"
   ],
@@ -27,25 +33,9 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "/^requirements\\.yml$/",
         "/^meta/main\\.yml$/"
       ],
       "matchStrings": [
-        "- name: pluggero\\.rustup\\s+version:\\s+(?<currentValue>[\\d\\.]+)",
-        "- role: pluggero\\.rustup\\s+version:\\s+(?<currentValue>[\\d\\.]+)"
-      ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "pluggero/ansible-role-rustup",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/^requirements\\.yml$/",
-        "/^meta/main\\.yml$/"
-      ],
-      "matchStrings": [
-        "- name: pluggero\\.nerdfonts\\s+version:\\s+(?<currentValue>[\\d\\.]+)",
         "- role: pluggero\\.nerdfonts\\s+version:\\s+(?<currentValue>[\\d\\.]+)"
       ],
       "datasourceTemplate": "github-tags",
