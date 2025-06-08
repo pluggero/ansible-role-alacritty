@@ -12,5 +12,9 @@
       loop_control:
         loop_var: task_file
 
+    - name: Import installed alacritty version check
+      ansible.builtin.include_tasks: noauto_check_installed_version.yml
+
     - name: Uninstall alacritty from source
       ansible.builtin.include_tasks: noauto_uninstall_source.yml
+      when: alacritty_installed_version is defined and alacritty_installed_version != ""

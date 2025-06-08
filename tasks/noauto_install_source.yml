@@ -19,6 +19,10 @@
           ansible.builtin.include_tasks: noauto_uninstall.yml
           when: alacritty_installed_version is defined
 
+        - name: Include rustup role
+          ansible.builtin.include_role:
+            name: "{{ alacritty_rustup_role }}"
+
         - name: Download alacritty
           ansible.builtin.get_url:
             url: "{{ alacritty_download_url }}"

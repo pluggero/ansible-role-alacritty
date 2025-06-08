@@ -6,6 +6,8 @@ alacritty_version: "0.15.1"
 alacritty_install_method: "dynamic"
 alacritty_force_install: false
 
+alacritty_rustup_role: "pluggero.rustup"
+
 alacritty_download_url: "https://github.com/alacritty/alacritty/archive/refs/tags/v{{ alacritty_version }}.tar.gz"
 alacritty_download_dir: "/tmp"
 

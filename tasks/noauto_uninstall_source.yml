@@ -1,6 +1,10 @@
 ---
 - name: Uninstall alacritty from source
   block:
+    - name: Include rustup role
+      ansible.builtin.include_role:
+        name: "{{ alacritty_rustup_role }}"
+
     - name: Uninstall alacritty
       ansible.builtin.command:
         cmd: "cargo uninstall alacritty"
