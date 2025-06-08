@@ -17,6 +17,7 @@
       block:
         - name: Uninstall current alacritty installation
           ansible.builtin.include_tasks: noauto_uninstall.yml
+          when: alacritty_installed_version is defined
 
         - name: Download alacritty
           ansible.builtin.get_url:
