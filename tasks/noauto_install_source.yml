@@ -15,9 +15,13 @@
     - name: Install alacritty from source
       when: alacritty_installed_version is not defined or alacritty_force_install
       block:
+        - name: Uninstall current alacritty installation
+          ansible.builtin.include_tasks: noauto_uninstall.yml
+          when: alacritty_installed_version is defined
+
         - name: Include rustup role
           ansible.builtin.include_role:
-            name: pluggero.rustup
+            name: "{{ alacritty_rustup_role }}"
 
         - name: Download alacritty
           ansible.builtin.get_url:
