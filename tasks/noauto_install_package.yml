@@ -29,9 +29,9 @@
       block:
         - name: Uninstall current alacritty installation
           ansible.builtin.include_tasks: noauto_uninstall.yml
-          when: alacritty_installed_version is defined
+          when: alacritty_installed_version is defined and alacritty_installed_version != ""
 
-        - name: Include OS-specific noauto_install_package tasks
+        - name: Install alacritty OS-specifically via package
           ansible.builtin.include_tasks: "{{ task_file }}"
           with_first_found:
             - "noauto_install_{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
