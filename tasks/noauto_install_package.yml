@@ -27,6 +27,9 @@
     - name: Install alacritty package
       when: alacritty_installed_version is not defined or alacritty_force_install
       block:
+        - name: Uninstall current alacritty installation
+          ansible.builtin.include_tasks: noauto_uninstall.yml
+
         - name: Include OS-specific noauto_install_package tasks
           ansible.builtin.include_tasks: "{{ task_file }}"
           with_first_found:
