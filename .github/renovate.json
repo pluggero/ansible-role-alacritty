@@ -16,7 +16,7 @@
       "automerge": false
     },
     {
-       "matchDatasources": ["github-tags", "ansible-galaxy"],
+       "matchManagers": ["ansible-galaxy", "custom.regex"],
        "matchPackageNames": ["pluggero/ansible-role-nerdfonts", "pluggero.nerdfonts"],
        "groupName": "nerdfonts"
     }
