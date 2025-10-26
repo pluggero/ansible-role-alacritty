@@ -11,4 +11,5 @@
       environment:
         PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
       failed_when: false
+      register: alacritty_uninstall_cargo_cmd
       changed_when: "'Removing' in alacritty_uninstall_cargo_cmd.stdout"
